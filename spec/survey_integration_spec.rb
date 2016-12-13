@@ -78,3 +78,18 @@ describe('delete a question', {:type => :feature}) do
     expect(page).to have_content('Title: Awesome Survey')
   end
 end
+
+describe('add answers to a question', {:type => :feature}) do
+  it('allows a survey author to add answers to a question') do
+    visit('/')
+    fill_in('new_survey_input', :with => "awesome survey")
+    click_on('Create!')
+    click_on("Awesome Survey")
+    fill_in('new_question_input', :with => "Testing")
+    click_on('Create!')
+    click_on('Testing')
+    fill_in('new_answer_input', :with => "Answering")
+    click_on('Add it!')
+    expect(page).to have_content("Answering")
+  end
+end

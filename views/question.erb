@@ -1,5 +1,33 @@
 <h1>Question: <%= @question.question_text() %></h1>
 
+<div class="well">
+  <div class="row">
+    <% if @answers.any?() %>
+      <h2>Here are the answers.</h2>
+
+      <ul class="list-inline">
+        <% @answers.each() do |answer| %>
+          <div class="radio">
+            <label><input type="radio" name="optradio"><%= answer.answer_text() %></label>
+        <% end %>
+      </ul>
+
+    <% else %>
+      <p>Question has no answers!</p>
+    <% end %>
+  </div>
+</div>
+
+
+<form action="/add_answer" method="post">
+  <input type="hidden" name="current_question_id" value="<%= @question.id() %>">
+  <label for="new_answer_input">Add a possible answer to this question:</label>
+  <input id="new_answer_input" name="new_answer_input" type="text">
+  <button type="submit">Add it!</button>
+</form>
+
+
+
 <form action="/update_question" method="post">
   <input type="hidden" name="_method" value="patch">
   <input type="hidden" id="current_question_id" name="current_question_id" value="<%= @question.id() %>">

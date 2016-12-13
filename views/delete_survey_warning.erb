@@ -4,7 +4,10 @@
 <form action="/delete_survey" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="hidden" name="current_survey_id" id="current_survey_id" value="<%= @survey.id() %>">
-  <button type="submit">Delete!</button>
+  <button class="btn btn-danger" type="submit">Delete!</button>
 </form>
-
-<a href="/">No, take me home.</a>
+<br>
+<h2>_____________________________</h2>
+<br>
+<br>
+<a class="btn btn-success" href="/">No, take me home.</a>

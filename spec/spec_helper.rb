@@ -6,6 +6,7 @@ require("pry")
 require("pg")
 require("./lib/survey")
 require("./lib/question")
+require("./lib/answer")
 
 RSpec.configure do |config|
   config.after(:each) do
@@ -14,6 +15,9 @@ RSpec.configure do |config|
     end
     Question.all().each() do |question|
       question.destroy()
+    end
+    Answer.all().each() do |answer|
+      answer.destroy()
     end
   end
 end

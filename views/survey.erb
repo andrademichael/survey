@@ -1,37 +1,49 @@
-<h1>Title: <%= @survey.title() %></h1>
+<div class="jumbotron">
+  <h1>Title: <%= @survey.title() %></h1>
+</div>
 
-<% if @questions.any?() %>
-  <h2>Here are the questions.</h2>
+<div class="well">
+  <div class="row">
+    <% if @questions.any?() %>
+      <h2>Here are the questions.</h2>
 
-  <ul>
-    <% @questions.each() do |question| %>
-      <li><a href="/question/<%= question.id() %>"><%= question.question_text() %></a></li>
+      <ul class="list-inline">
+        <% @questions.each() do |question| %>
+          <li><a href="/question/<%= question.id() %>"><%= question.question_text() %></a></li>
+        <% end %>
+      </ul>
+
+    <% else %>
+      <p>Survey has no question!</p>
     <% end %>
-  </ul>
-
-<% else %>
-  <p>Survey has no question!</p>
-<% end %>
-
-<form action="/create_question" method="post">
+  </div>
+</div>
+<form class="well" action="/create_question" method="post">
   <p>Create a New Question</p>
   <input type="hidden" name="current_survey_id" id="current_survey_id" value="<%= @survey.id() %>">
   <label for="new_question_input">Enter a Question:</label>
   <input id="new_question_input" name="new_question_input" type="text">
 
-  <button type="submit">Create!</button>
+  <button class="btn btn-info" type="submit">Create!</button>
 </form>
 
-<form action="/change_survey_title" method="post">
+<form class="well" action="/change_survey_title" method="post">
   <input type="hidden" name="_method" value="patch">
   <input type="hidden" name="current_survey_id" id="current_survey_id" value="<%= @survey.id() %>">
   <label for="survey_title_change">Change Title:</label>
   <input id="survey_title_change" name="survey_title_change" type="text">
 
-  <button type="submit">Update!</button>
+  <button class="btn btn-primary" type="submit">Update!</button>
 </form>
+
+<br>
+<a class="btn btn-primary" href="/">View all surveys</a>
+<br>
+<br>
+<br>
+
 
 <form action="/delete_survey_warning" method="post">
   <input type="hidden" name="current_survey_id" id="current_survey_id" value="<%= @survey.id() %>">
-  <button type="submit"><strong>Delete this survey?!</strong></button>
+  <button class="btn btn-warning" type="submit"><strong>Delete this survey?!</strong></button>
 </form>

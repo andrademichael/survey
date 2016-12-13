@@ -4,7 +4,11 @@
 <form action="/delete_question" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="hidden" name="current_question_id" id="current_question_id" value="<%= @question.id() %>">
-  <button type="submit">Delete!</button>
+  <button class="btn btn-danger" type="submit">Delete!</button>
 </form>
-
-<a href="/">No, take me home.</a>
+<br>
+<p>_________________________</p>
+<br>
+<br>
+<br>
+<a class="btn btn-success" href="/">No, take me home.</a>
