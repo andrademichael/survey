@@ -1,4 +1,4 @@
-<h1>Title: <% @survey.title() %></h1>
+<h1>Title: <%= @survey.title() %></h1>
 
 <% if @questions.any?() %>
   <h2>Here are the questions.</h2>
@@ -20,4 +20,13 @@
   <input id="new_question_input" name="new_question_input" type="text">
 
   <button type="submit">Create!</button>
+</form>
+
+<form action="/change_survey_title" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="current_survey_id" id="current_survey_id" value="<%= @survey.id() %>">
+  <label for="survey_title_change">Change Title:</label>
+  <input id="survey_title_change" name="survey_title_change" type="text">
+
+  <button type="submit">Update!</button>
 </form>

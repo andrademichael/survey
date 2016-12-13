@@ -39,3 +39,16 @@ post('/create_question') do
     erb(:survey)
   end
 end
+
+patch('/change_survey_title') do
+  rename_title = params.fetch("survey_title_change")
+  survey_id = params.fetch("current_survey_id")
+  @survey = Survey.find(survey_id.to_i())
+  if @survey.update({:title => rename_title})
+    @questions = Question.all()
+    redirect to ("/survey/#{@survey.id}")
+  else
+    @questions = Question.all()
+    erb(:survey)
+  end
+end
