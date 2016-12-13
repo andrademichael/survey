@@ -1,0 +1,9 @@
+<h1><strong>Are you sure you want to delete this survey?</strong></h1>
+
+<form action="/delete_survey" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="hidden" name="current_survey_id" id="current_survey_id" value="<%= @survey.id() %>">
+  <button type="submit">Delete!</button>
+</form>
+
+<a href="/">No, take me home.</a>

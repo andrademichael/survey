@@ -53,6 +53,12 @@ patch('/change_survey_title') do
   end
 end
 
+post('/delete_survey_warning') do
+  survey_id = params.fetch("current_survey_id")
+  @survey = Survey.find(survey_id.to_i())
+  erb(:delete_survey_warning)
+end
+
 delete('/delete_survey') do
   survey_id = params.fetch("current_survey_id")
   @survey = Survey.find(survey_id.to_i())

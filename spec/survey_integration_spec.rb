@@ -38,11 +38,12 @@ describe('update a survey', {:type => :feature}) do
 end
 
 describe('delete a survey', {:type => :feature}) do
-  it('allows a user to delete the survey') do
+  it('allows a user to delete the survey after warning') do
     visit('/')
     fill_in('new_survey_input', :with => "awesome survey")
     click_on('Create!')
     click_link("Awesome Survey")
+    click_on('Delete this survey?!')
     click_on('Delete!')
     expect(page).to have_content("Silly Surveys")
   end

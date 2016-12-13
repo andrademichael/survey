@@ -31,8 +31,7 @@
   <button type="submit">Update!</button>
 </form>
 
-<form action="/delete_survey" method="post">
-  <input type="hidden" name="_method" value="delete">
+<form action="/delete_survey_warning" method="post">
   <input type="hidden" name="current_survey_id" id="current_survey_id" value="<%= @survey.id() %>">
-  <button type="submit">Delete!</button>
+  <button type="submit"><strong>Delete this survey?!</strong></button>
 </form>
