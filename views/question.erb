@@ -8,3 +8,9 @@
 
   <button type="submit">Update!</button>
 </form>
+
+<form action="/delete_question_warning" method="post">
+  <input type="hidden" id="current_question_id" name="current_question_id" value="<%= @question.id() %>">
+
+  <button type="submit"><strong>Delete this question?!</strong></button>
+</form>

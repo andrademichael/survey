@@ -80,3 +80,18 @@ patch('/update_question') do
   @question.update({:question_text => rename_text})
   redirect to ("/question/#{@question.id}")
 end
+
+post('/delete_question_warning') do
+  question_id = params.fetch("current_question_id")
+  @question = Question.find(question_id.to_i())
+  erb(:delete_question_warning)
+end
+
+delete('/delete_question') do
+  question_id = params.fetch("current_question_id")
+  @question = Question.find(question_id.to_i())
+  survey_id = @question.survey_id()
+  @question.destroy()
+  @questions = Question.all()
+  redirect to ("/survey/#{survey_id}")
+end
