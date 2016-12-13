@@ -1,0 +1,23 @@
+<h1>Title: <% @survey.title() %></h1>
+
+<% if @questions.any?() %>
+  <h2>Here are the questions.</h2>
+
+  <ul>
+    <% @questions.each() do |question| %>
+      <li><a href="/question/<%= question.id()%>"><%= question.question_text() %></a></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>Survey has no question!</p>
+<% end %>
+
+<form action="/create_question" method="post">
+  <p>Create a New Question</p>
+  <input type="hidden" name="current_survey_id" id="current_survey_id" value="<%= @survey.id() %>">
+  <label for="new_question_input">Enter a Question:</label>
+  <input id="new_question_input" name="new_question_input" type="text">
+
+  <button type="submit">Create!</button>
+</form>
