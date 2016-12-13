@@ -48,3 +48,18 @@ describe('delete a survey', {:type => :feature}) do
     expect(page).to have_content("Silly Surveys")
   end
 end
+
+describe('update a question', {:type => :feature}) do
+  it('allows a user to update the questions from the survey page') do
+    visit('/')
+    fill_in('new_survey_input', :with => "awesome survey")
+    click_on('Create!')
+    click_on("Awesome Survey")
+    fill_in('new_question_input', :with => "Testing")
+    click_on('Create!')
+    click_on('Testing')
+    fill_in('change_question_text', :with => "Updating")
+    click_on('Update!')
+    expect(page).to have_content("Updating")
+  end
+end

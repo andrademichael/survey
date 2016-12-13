@@ -1,0 +1,10 @@
+<h1>Question: <%= @question.question_text() %></h1>
+
+<form action="/update_question" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" id="current_question_id" name="current_question_id" value="<%= @question.id() %>">
+  <label for="change_question_text">Change the question:</label>
+  <input id="change_question_text" name="change_question_text" type="text">
+
+  <button type="submit">Update!</button>
+</form>

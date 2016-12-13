@@ -65,5 +65,18 @@ delete('/delete_survey') do
   @survey.destroy()
   @surveys = Survey.all()
   redirect to ('/')
-  erb(:index)
+end
+
+get('/question/:id') do
+  question_id = params.fetch("id")
+  @question = Question.find(question_id.to_i())
+  erb(:question)
+end
+
+patch('/update_question') do
+  rename_text = params.fetch("change_question_text")
+  question_id = params.fetch("current_question_id")
+  @question = Question.find(question_id.to_i())
+  @question.update({:question_text => rename_text})
+  redirect to ("/question/#{@question.id}")
 end
