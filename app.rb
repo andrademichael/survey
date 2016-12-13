@@ -52,3 +52,12 @@ patch('/change_survey_title') do
     erb(:survey)
   end
 end
+
+delete('/delete_survey') do
+  survey_id = params.fetch("current_survey_id")
+  @survey = Survey.find(survey_id.to_i())
+  @survey.destroy()
+  @surveys = Survey.all()
+  redirect to ('/')
+  erb(:index)
+end
