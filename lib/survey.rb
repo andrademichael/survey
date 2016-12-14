@@ -1,7 +1,7 @@
 class Survey < ActiveRecord::Base
 validates(:title, {:presence => true})
 before_save(:capitalize_title)
-
+has_many(:question)
 
 private
 

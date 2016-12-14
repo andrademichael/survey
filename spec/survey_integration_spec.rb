@@ -93,3 +93,13 @@ describe('add answers to a question', {:type => :feature}) do
     expect(page).to have_content("Answering")
   end
 end
+
+describe('choose a survey to take', :type => :feature) do
+  it('allows a survey taker to view names of all surveys and choose one to take') do
+    visit('/')
+    fill_in('new_survey_input', :with => "awesome survey")
+    click_on('Create!')
+    click_link('Take a survey!')
+    expect(page).to have_content("Here are the surveys.")
+  end
+end

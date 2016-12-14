@@ -8,7 +8,8 @@
       <ul class="list-inline">
         <% @answers.each() do |answer| %>
           <div class="radio">
-            <label><input type="radio" name="optradio"><%= answer.answer_text() %></label>
+            <label><input type="radio" name="Question <% answer.question_id%>"><%=answer.answer_text%></label>
+          </div>
         <% end %>
       </ul>
 
@@ -20,7 +21,7 @@
 
 
 <form action="/add_answer" method="post">
-  <input type="hidden" name="current_question_id" value="<%= @question.id() %>">
+  <input type="hidden" id="current_question_id" name="current_question_id" value="<%= @question.id() %>">
   <label for="new_answer_input">Add a possible answer to this question:</label>
   <input id="new_answer_input" name="new_answer_input" type="text">
   <button type="submit">Add it!</button>
@@ -42,3 +43,6 @@
 
   <button type="submit"><strong>Delete this question?!</strong></button>
 </form>
+
+<a href="/survey/<%= @question.survey_id() %>">Go Back</a>
+<a href="/">Home</a>

@@ -69,8 +69,8 @@ end
 
 get('/question/:id') do
   question_id = params.fetch("id")
-  @answers = Answer.all()
   @question = Question.find(question_id.to_i())
+  @answers = @question.answers()
   erb(:question)
 end
 
@@ -98,15 +98,18 @@ delete('/delete_question') do
 end
 
 post('/add_answer') do
-  question_id = params.fetch("current_question_id")
+  question_id = (params.fetch("current_question_id")).to_i()
   new_answer_text = params.fetch("new_answer_input")
   @question = Question.find(question_id.to_i())
-  @new_answer = Answer.new({:answer_text => new_answer_text, :question_id => @question.id()})
+  @new_answer = Answer.new({:answer_text => new_answer_text, :question_id => question_id})
   if @new_answer.save()
-    @answers = Answer.all()
-    redirect ("/question/#{question_id}")
+    redirect to("/question/#{question_id}")
   else
-    @answers = Answer.all()
-    redirect ("/question/#{question_id}")
+    redirect to("/question/#{question_id}")
   end
+end
+
+get('/choose_survey') do
+  @surveys = Survey.all()
+  erb(:choose_survey)
 end
