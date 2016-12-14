@@ -1,4 +1,6 @@
-<h1>Question: <%= @question.question_text() %></h1>
+<div class="jumbotron">
+  <h1>Question: <%= @question.question_text() %></h1>
+</div>
 
 <div class="well">
   <div class="row">
@@ -23,26 +25,29 @@
 <form action="/add_answer" method="post">
   <input type="hidden" id="current_question_id" name="current_question_id" value="<%= @question.id() %>">
   <label for="new_answer_input">Add a possible answer to this question:</label>
+  <br>
   <input id="new_answer_input" name="new_answer_input" type="text">
   <button type="submit">Add it!</button>
 </form>
-
-
-
+<br>
+<br>
 <form action="/update_question" method="post">
   <input type="hidden" name="_method" value="patch">
   <input type="hidden" id="current_question_id" name="current_question_id" value="<%= @question.id() %>">
   <label for="change_question_text">Change the question:</label>
+  <br>
   <input id="change_question_text" name="change_question_text" type="text">
-
   <button type="submit">Update!</button>
 </form>
-
+<br>
+<br>
+<a class="btn btn-info" href="/survey/<%= @question.survey_id() %>">Go Back</a>
+<a class="btn btn-success" href="/">Home</a>
+<br>
+<br>
+<br>
+<br>
 <form action="/delete_question_warning" method="post">
   <input type="hidden" id="current_question_id" name="current_question_id" value="<%= @question.id() %>">
-
-  <button type="submit"><strong>Delete this question?!</strong></button>
+  <button class="btn btn-warning" type="submit"><strong>Delete this question?!</strong></button>
 </form>
-
-<a href="/survey/<%= @question.survey_id() %>">Go Back</a>
-<a href="/">Home</a>

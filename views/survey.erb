@@ -9,7 +9,7 @@
 
       <ul class="list-inline">
         <% @questions.each() do |question| %>
-          <li><a href="/question/<%= question.id() %>"><%= question.question_text() %></a></li>
+          <li><a class="btn btn-primary" href="/question/<%= question.id() %>"><%= question.question_text() %></a></li>
         <% end %>
       </ul>
 
@@ -41,7 +41,8 @@
 <br>
 <br>
 <br>
-
+<br>
+<br>
 
 <form action="/delete_survey_warning" method="post">
   <input type="hidden" name="current_survey_id" id="current_survey_id" value="<%= @survey.id() %>">

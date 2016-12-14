@@ -1,30 +1,30 @@
-<h1>Silly Surveys</h1>
+<div class="jumbotron">
+  <h1>Silly Surveys</h1>
+</div>
 
-<h2>Survey Takers:</h2>
-<a class="btn btn-success" href="/choose_survey">Take a survey!</a>
-
-
-
-
-<h2>Survey Writers:</h2>
-<% if @surveys.any?() %>
-  <h2>Here are the surveys.</h2>
-  <h3>Click on a survey to view its questions.</h3>
-
-    <ul>
-      <% @surveys.each() do |survey| %>
-        <li><a href="/survey/<%= survey.id()%>"><%= survey.title() %></a></li>
-      <% end %>
-    </ul>
-
-<% else %>
- <p>There are no surveys yet!</p>
-<% end %>
-
-<form action="/create_survey" method="post">
-  <p>Create a New Survey</p>
-  <label for="new_survey_input">Title:</label>
-  <input id="new_survey_input" name="new_survey_input" type="text">
-
-  <button type="submit">Create!</button>
-</form>
+<div class="well">
+  <h2>Survey Takers:</h2>
+  <a class="btn btn-success" href="/choose_survey">Take a survey!</a>
+</div>
+<div class="well">
+  <h2>Survey Writers:</h2>
+  <br>
+  <% if @surveys.any?() %>
+    <h3>Here are the surveys.</h3>
+    <h3>Click on a survey to view its questions.</h3>
+      <ul>
+        <% @surveys.each() do |survey| %>
+          <p><a class="btn btn-primary" href="/survey/<%= survey.id()%>"><%= survey.title() %></a></p>
+        <% end %>
+      </ul>
+  <% else %>
+   <p>There are no surveys yet!</p>
+  <% end %>
+  <br>
+  <form action="/create_survey" method="post">
+    <h4>Create a New Survey</h4>
+    <label for="new_survey_input">Title:</label>
+    <input id="new_survey_input" name="new_survey_input" type="text">
+    <button type="submit">Create!</button>
+  </form>
+</div>
